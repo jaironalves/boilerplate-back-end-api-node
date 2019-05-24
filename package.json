@@ -1,0 +1,56 @@
+{
+  "name": "fidelidade-back-end-api",
+  "version": "1.0.0",
+  "description": "\"back-end-api\"",
+  "scripts": {
+    "lint": "eslint src --color",
+    "start": "npm run start:check && npm run start:nodemon",
+    "start:check": "node script/_start.js && sequelize db:migrate",
+    "start:nodemon": "nodemon --ignore __tests__ --exec npm run start:node",
+    "start:node": "node --nolazy --inspect src/index.js",
+    "pretest": "node script/_test.js && cross-env NODE_ENV=test sequelize db:migrate",
+    "test": "cross-env NODE_ENV=test jest",
+    "posttest": "cross-env NODE_ENV=test sequelize db:migrate:undo:all"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "pg": "^7.11.0",
+    "sequelize": "^5.8.6",
+    "sequelize-cli": "^5.4.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.3.0",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.1.7",
+    "nodemon": "^1.19.0",
+    "prettier": "^1.17.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "git add ."
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "betaon@vs-ssh.visualstudio.com:v3/betaon/Fidelidade/back-end-api"
+  },
+  "author": "Jairon Alves Lima",
+  "license": "MIT"
+}

@@ -1,0 +1,12 @@
+const path = require('path')
+const fs = require('fs')
+
+let rootPath = path.resolve()
+if (fs.existsSync(path.join(__dirname, 'src'))) rootPath = path.join(__dirname, 'src')
+
+module.exports = {
+  config: path.resolve(rootPath, 'config', 'sequelize.js'),
+  'models-path': path.resolve(rootPath, 'app', 'database', 'models'),
+  'seeders-path': path.resolve(rootPath, 'app', 'database', 'seeders'),
+  'migrations-path': path.resolve(rootPath, 'app', 'database', 'migrations'),
+}
